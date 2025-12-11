@@ -21,9 +21,7 @@ logger = logging.getLogger("silver-line")
 # ---------- 1.  global STT ----------
 MODEL_URL = "https://alphacephei.com/vosk/models/vosk-model-small-en-0.15.zip"
 MODEL_DIR = "vosk-model-small-en-0.15"
-if not os.path.exists(MODEL_DIR):
-    # one-time download (Render keeps it in layer cache)
-    os.system(f"wget -q {MODEL_URL} && unzip -q vosk-model-small-en-0.15.zip && rm vosk-model-small-en-0.15.zip")
+
 vosk_model = vosk.Model(MODEL_DIR)
 vosk_rec = vosk.KaldiRecognizer(vosk_model, 16000)
 
