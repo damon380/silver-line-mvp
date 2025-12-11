@@ -19,8 +19,11 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("silver-line")
 
 # ---------- 1.  global STT ----------
-MODEL_URL = "https://alphacephei.com/vosk/models/vosk-model-small-en-0.15.zip"
 MODEL_DIR = "vosk-model-small-en-0.15"
+
+# sanity check
+if not os.path.isdir(MODEL_DIR):
+    raise RuntimeError(f"Vosk model folder '{MODEL_DIR}' not found – did you forget to git-add it?")
 
 vosk_model = vosk.Model(MODEL_DIR)
 vosk_rec = vosk.KaldiRecognizer(vosk_model, 16000)
