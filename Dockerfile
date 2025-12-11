@@ -2,12 +2,15 @@
 FROM python:3.11-slim
 WORKDIR /app
 
-# 1.  OS build tools + modern pip/setuptools/wheel
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential gcc g++ && \
-    python -m pip install --upgrade pip setuptools wheel build && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# ---- pre-install Vosk small English model ----
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    wget unzip && \
+    wget -q https://alphacephei.com/vosk/models/vosk-model-small-en-0.15.zip && \
+    unzip -q vosk-model-small-en-0.15.zip && \
+    rm vosk-model-small-en-0.15.zip && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+    
 # 2.  Install Python deps
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
