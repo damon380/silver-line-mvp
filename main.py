@@ -19,8 +19,8 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("silver-line")
 
 # ---------- 1.  global STT ----------
-MODEL_DIR = "vosk-model-small-en-0.15"
 
+MODEL_DIR = "vosk-model-small-en-us-0.15"
 # sanity check
 if not os.path.isdir(MODEL_DIR):
     raise RuntimeError(f"Vosk model folder '{MODEL_DIR}' not found – did you forget to git-add it?")
