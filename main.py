@@ -80,6 +80,7 @@ workflow.add_node("ask", ask_question)
 workflow.add_node("end", final_summary)
 workflow.add_conditional_edges("ask", should_continue, {"ask": "ask", "end": "end"})
 workflow.set_entry_point("ask")
+workflow.add_edge("end", "__end__")   # or workflow.add_edge("end", END)
 graph = workflow.compile()
 
 # ---------- 5.  FastAPI ----------
