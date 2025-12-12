@@ -19,7 +19,12 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("silver-line")
 
 # ---------- 1.  global STT ----------
-MODEL_DIR = "vosk-model-small-en-0.15"
+
+MODEL_DIR = "vosk-model-small-en-us-0.15"
+print("MODEL_DIR absolute:", os.path.abspath(MODEL_DIR))
+print("top-level files:", os.listdir(MODEL_DIR))
+print("am/final.mdl exists:", os.path.isfile(os.path.join(MODEL_DIR, "am", "final.mdl")))
+print("conf/mfcc.conf exists:", os.path.isfile(os.path.join(MODEL_DIR, "conf", "mfcc.conf")))
 
 # sanity check
 if not os.path.isdir(MODEL_DIR):
